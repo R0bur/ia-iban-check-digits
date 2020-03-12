@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>IBAN check digits</title>
+</head>
+<body>
+<pre>
+DEMONSTRATION: Calculation of the check digits for an IBAN account number.
+<script src="iaiban.js"></script>
+<script src="accounts.js"></script>
+<script>
+var i, n1, n2, key, account;
+n1 = 0;
+n2 = 0;
+for (i in accounts) {
+	account = accounts[i];
+	document.writeln ('IBAN: ', account);
+	document.writeln ('        ^^-- check digits placeholder');
+	key = iaCalculateIBANCheckDigits (account);
+	document.writeln ('Calculated check digits: ', key);
+	if (account.substr (2, 2) == key) {
+		document.writeln ('passed');
+		n1++;
+	}
+	else {
+		document.writeln ('*** ERROR ***');
+		n2++;
+	}
+	document.writeln ('');
+}
+document.writeln ('-----------------------');
+document.writeln ('SUMMARY:');
+document.writeln ('PASSED: ', n1);
+document.writeln ('ERROR: ', n2);
+document.writeln ('TOTAL: ', n1 + n2);
+document.writeln ('-----------------------');
+</script>
+</pre>
+</body>
+</html>
